@@ -1,0 +1,17 @@
+#vi /etc/systemd/system/pinpoint.service
+
+[Unit]
+Description=Docker Compose Application Service
+Requires=docker.service
+After=docker.service
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+WorkingDirectory=/home/ec2-user/pinpoint-docker
+ExecStart=/home/ec2-user/pinpoint-docker/pinpoint.sh
+ExecStop=/usr/local/bin/docker-compose stop
+TimeoutStartSec=0
+
+[Install]
+WantedBy=multi-user.target
