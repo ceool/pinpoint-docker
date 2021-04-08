@@ -1,5 +1,5 @@
 #!/bin/bash
 
 docker-compose stop
-docker-compose rm -f  taskmanager jobmanager pinpoint-collector pinpoint-web
+docker-compose rm -f taskmanager jobmanager
 docker-compose up -d
