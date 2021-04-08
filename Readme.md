@@ -1,4 +1,4 @@
-
+﻿
 ![Pinpoint](https://github.com/naver/pinpoint-docker/blob/master/docs/logo.png)
 
 # Pinpoint-Docker for Pinpoint
@@ -40,8 +40,7 @@ It supports and helps you understand your application in a glance and allow you 
 ## How to install Pinpoint?
 
 You can easily bring up an entire Dockerized Pinpoint(latest release) environment by using [Docker Compose](https://docs.docker.com/compose/) with any of the provided `docker-compose.yml` files  as below.  
-With `docker-compose.yml` under *Pinpoint-Docker* folder brings up all the environment attached with Pinpoint-QuickStart(sample app).
-To monitor your agent see [configuration part](#configurations) for further details.  
+To monitor your agent see configuration part for further details.
 
 ```
 git clone https://github.com/naver/pinpoint-docker.git
@@ -62,17 +61,12 @@ You can also build the image with `docker-compose up -d` command without pulling
 This will install and run all services required to run all features in Pinpoint in docker containers joined with same network.
  - Pinpoint-Web Server
  - Pinpoint-Collector
- - Pinpoint-Agent
  - Pinpoint-Flink(to support certain feature)
  - Pinpoint-Zookeeper
  - Pinpoint-Hbase
- - Pinpoint-QuickStart(a sample application, 1.8.1+)
  - Pinpoint-Mysql(to support certain feature)
 This may take several minutes to download all necessary images.
 
-You can replace `QuickStart` application part with your application to start monitoring.  
- - check [`Testing QuickStart application`](#testing-quickstart-application) for a quick demo of pinpoint
- - check [`Monitoring YOUR Application`](#monitoring-your-application) part for further details
 
 ### Mysql (optional, 1.8.1+)
 
@@ -92,12 +86,6 @@ After all containers are started and ready to go. Pinpoint-Flink server is runni
 
 You can check the [alarm guide document at the homepage](https://naver.github.io/pinpoint/alarm.html) for full understanding.
 But for the docker image, All is set. fillout variables under *#mail server information required* in `.env` file before starting the container 
- 
-### Testing QuickStart application
- 
-Now you are ready to monitor the sample application(Pinpoint-QuickStart [port 8000](http://localhost:8000)) provided.
-If you can't find any connected application from Pinpoint-Web's first page([port 8079](http://localhost:8079) as default), don't panic and wait for a while.
-It will take some time for Pinpoint to retrieve the application's information when running for the first time.
 
 ## Monitoring YOUR Application
 
@@ -110,7 +98,6 @@ If you are not familiar with Pinpoint concept, please read: [Overview](http://na
 **You will need to attach *Pinpoint-Agent* to your application.**
 
 Running Pinpoint-Agent docker-compose separately, Examples are [here](https://github.com/naver/pinpoint-docker/tree/master/pinpoint-agent-attach-example).  
-Otherwise, you can check how [Pinpoint-Quickstart](https://github.com/naver/pinpoint-docker/blob/master/docker-compose.yml) is attached to Pinpoint-Agent with docker-compose.
 
 We'll try to create more examples along the way.
 If anyone who can share their dockerfile, it's always welcome.
@@ -124,18 +111,13 @@ It’s not intended nor supported for production use.
 You can use `docker-compose` and `.env` files under each folder to install the modules separately into several servers.
 If containers are separated, ip configurations in `.env` must be changed within. 
 
-For example, if you want your application running from a docker and rest of Pinpoint in another.
-You can remove *pinpoint-agent* and *pinpoint-quickstart* from docker-compose.yml and run to establish all necessary component of pinpoint.
-And create another docker-compose.yml just like one under pinpoint-quickstart folder to run your application.
-Finally, since agent needs to acknowledge the collector ip. collector ip needs to be changed in .env.
-
 ## Configurations
 
 Configuration relies on supplying `docker-compose` with environment variables defined in `.env` file. So it's recommended to change variables only from `.env` file.
 With `docker-compose` in this repository. You can create stand-alone containers that are needed to run most of the features in Pinpoint.
 
 **Ports** can be also configured in .env file.
-(Default ports are Pinpoint-Web:8079, Quickstart:8000 and Flink:8081 as configured in .env file)
+(Default ports are Pinpoint-Web:8079, Flink:8081 as configured in .env file)
 
 Pinpoint-Zookeeper is just an example of using zookeeper image. You can modify docker-compose files to suit your needs.
 
@@ -176,4 +158,3 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 ```
-
